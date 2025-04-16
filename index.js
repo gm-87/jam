@@ -100,21 +100,4 @@ server.listen(PORT, () => {
 });
 
 
-app.post('/api/save-subscription', (req, res) => {
-  const subscription = req.body;
-
-  // Send a test notification immediately (or store it)
-  webpush.sendNotification(subscription, JSON.stringify({
-    title: "You're Up Next!",
-    body: "Get ready to go on stage!",
-    icon: "icon.png"
-  })).then(() => {
-    res.status(201).json({ success: true });
-  }).catch(err => {
-    console.error("Push error", err);
-    res.sendStatus(500);
-  });
-});
-
-
 
