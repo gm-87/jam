@@ -1,13 +1,5 @@
 // backend/index.js
 
-const webpush = require('web-push');
-
-webpush.setVapidDetails(
-  'mailto:your@email.com',
-  process.env.VAPID_PUBLIC_KEY,
-  process.env.VAPID_PRIVATE_KEY
-);
-
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
