@@ -98,16 +98,3 @@ server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
-const webpush = require('web-push');
-
-webpush.setVapidDetails(
-  'mailto:your@email.com',
-  VAPID_PUBLIC_KEY,
-  VAPID_PRIVATE_KEY
-);
-
-// When it's time to notify:
-webpush.sendNotification(subscription, JSON.stringify({
-  title: "You're Up Next!",
-  body: "Get ready to go on stage!"
-}));
