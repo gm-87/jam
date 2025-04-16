@@ -12,6 +12,7 @@
   "express": "^4.18.2",
   "socket.io": "^4.5.4",
   "cors": "^2.8.5",
+  "firebase": "^9.22.2"
 }
   "description": ""
 }
