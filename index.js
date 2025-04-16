@@ -1,5 +1,13 @@
 // backend/index.js
 
+const webpush = require('web-push');
+
+webpush.setVapidDetails(
+  'mailto:your@email.com',
+  process.env.VAPID_PUBLIC_KEY,
+  process.env.VAPID_PRIVATE_KEY
+);
+
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -98,4 +106,23 @@ const PORT = 3000;
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+
+app.post('/api/save-subscription', (req, res) => {
+  const subscription = req.body;
+
+  // Send a test notification immediately (or store it)
+  webpush.sendNotification(subscription, JSON.stringify({
+    title: "You're Up Next!",
+    body: "Get ready to go on stage!",
+    icon: "icon.png"
+  })).then(() => {
+    res.status(201).json({ success: true });
+  }).catch(err => {
+    console.error("Push error", err);
+    res.sendStatus(500);
+  });
+});
+
+
 
